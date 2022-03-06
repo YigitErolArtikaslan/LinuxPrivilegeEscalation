@@ -1,10 +1,10 @@
 # LinuxPrivilegeEscalation
 
 Bu dökümanı, linux işletim sistemlerine yönelik yetki yükseltme açıklarının analizlerini gerçekleştirmek üzere kopya kağıdı olması üzerine kaleme aldım.
-Bu içerik temel ve bir kaba kılavuzdur. Linux değişken olduğundan, her komut her sistem üzerinde çalışmayabilir.
+Bu içerik temel ve  kaba kılavuzdur. Linux değişken olduğundan, her komut her sistem üzerinde çalışmayabilir. Ekran görüntüleri ile  üzerinde çalışma yapmakta olduğum ubuntu 16.04.7 sürümüne ait bir sistem üzerinden görselleştirmeye özen gösterdim.
 
 
-**Sistem Bilgisi**
+## Sistem Bilgisi
 
 **Dağıtım türü nedir ? Hangi sürüm ?**
 
@@ -71,7 +71,7 @@ ls -la /var/cache/yum
 ![7](https://user-images.githubusercontent.com/101067919/156944636-a196add4-16b4-4b70-8ea0-e1e8bb938989.png)
 
 
-**İletişim ve Ağ**
+## İletişim ve Ağ
 
 **NIC kontrolü**
 ```
@@ -105,7 +105,7 @@ route
 ```
 ![11](https://user-images.githubusercontent.com/101067919/156945373-10c4902f-92f4-428c-9b9c-115b444f8c2e.png)
 
-**Kullanıcı bilgilerine erişme**
+## Kullanıcı bilgilerine erişme
 
 **Yetki öğrenme vb. için kullanılabilir.**
 ```
@@ -152,7 +152,7 @@ cat /etc/ssh/ssh_host_key.pub
 cat /etc/ssh/ssh_host_key
 ```
 
-**Dosya Sistemleri**
+## Dosya Sistemleri
 ```
 ls -aRl /etc/ | awk '$1 ~ /^.*w.*/' 2>/dev/null
 ls -aRl /etc/ | awk '$1 ~ /^..w/' 2>/dev/null
@@ -210,4 +210,43 @@ ls -alh /var/lib/dhcp3/
 ls -alh /var/log/postgresql/
 ls -alh /var/log/proftpd/
 ls -alh /var/log/samba/
+```
+
+**Dosya sistemleri hakkında bilgi edinmek için**
+```
+mount
+df -h
+cat /etc/fstab
+```
+
+**UID,GUID**
+```
+find / -perm -1000 -type d 2>/dev/null
+find / -perm -g=s -type f 2>/dev/null
+find / -perm -u=s -type f 2>/dev/null
+```
+
+**TMP, /var/tmp, /dev/shm. Nereden ne yazılabilir ve/veya çalıştırılabilir?**
+```
+find / -writable -type d 2>/dev/null  
+find / -perm -222 -type d 2>/dev/null
+find / -perm -o w -type d 2>/dev/null
+find / -perm -o x -type d 2>/dev/null
+```
+
+## Exploit kodu hazırlamak için
+```
+find / -name perl*
+find / -name python*
+find / -name gcc*
+find / -name cc
+```
+
+**Dosyalar nasıl yüklenebilir?**
+```
+find / -name wget
+find / -name nc*
+find / -name netcat*
+find / -name tftp*
+find / -name ftp
 ```
