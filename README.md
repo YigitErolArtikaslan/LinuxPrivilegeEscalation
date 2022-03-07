@@ -1,6 +1,6 @@
 # Linux Privilage Escalation
 
-Bu dökümanı, linux işletim sistemlerine yönelik yetki yükseltme açıklarının analizlerini gerçekleştirmek üzere kopya kağıdı olması üzerine kaleme aldım.
+Bu dökümanı linux işletim sistemlerine yönelik yetki yükseltme açıklarının analizlerini gerçekleştirmek üzere kopya kağıdı olması üzerine kaleme aldım.
 Bu içerik temel ve  kaba kılavuzdur. Linux değişken olduğundan, her komut her sistem üzerinde çalışmayabilir. Ekran görüntüleri ile  üzerinde çalışma yapmakta olduğum ubuntu 16.04.7 sürümüne ait bir sistem üzerinden görselleştirmeye özen gösterdim.
 
 
